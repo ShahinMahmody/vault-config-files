@@ -3,7 +3,8 @@ global:
 
 injector:
   enabled: true
-  agentImage: "1.9.3"
+  agentImage:
+    tag: "1.9.5"
   namespaceSelector:
     matchLabels:
       kubernetes.io/metadata.name : shahin-playground
@@ -17,7 +18,7 @@ server:
     raft:
       enabled: true
   image:
-    tag: "1.9.3"
+    tag: "1.9.5"
   route:
     enabled: true
 
