@@ -4,8 +4,8 @@ spec:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
         vault.hashicorp.com/role: 'pg-selector'
-        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'database/creds/pg-select-public'
-        vault.hashicorp.com/agent-inject-template-database-config.txt: |
+        vault.hashicorp.com/agent-inject-secret-db-creds: 'database/creds/pg-select-public'
+        vault.hashicorp.com/agent-inject-template-db-creds: |
           {
           {{ with secret "database/creds/pg-select-public" -}}
             "db_connection": "host=postgresql port=5432 user={{ .Data.username }} password={{ .Data.password }} dbname=db sslmode=disable"
