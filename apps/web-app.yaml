@@ -32,7 +32,7 @@ spec:
       labels:
         app: web
     spec:
-      serviceAccountName: demo-app
+      serviceAccountName: pg-selector
       containers:
         - name: web
           image: hashicorpdemoapp/product-api:v0.0.6
