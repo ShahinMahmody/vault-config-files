@@ -11,3 +11,4 @@ spec:
             "db_connection": "host=postgresql port=5432 user={{ .Data.username }} password={{ .Data.password }} dbname=db sslmode=disable"
           {{- end }}
           }
+        vault.hashicorp.com/service: 'http://vault-v2.shahin-playground.svc:8200'
