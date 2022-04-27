@@ -3,10 +3,11 @@ spec:
     metadata:
       annotations:
         vault.hashicorp.com/agent-inject: 'true'
-        vault.hashicorp.com/agent-inject-status: 'update'
         vault.hashicorp.com/role: 'pg-selector'
-        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'secret/data/demo/app'
+        vault.hashicorp.com/agent-inject-secret-database-config.txt: 'database/creds/pg-select-public'
         vault.hashicorp.com/agent-inject-template-database-config.txt: |
-          {{- with secret "secret/data/demo/app" -}}
-          postgresql://{{ .Data.data.username }}:{{ .Data.data.password }}@postgresql:5432/db
-          {{- end -}}
+          {
+          {{ with secret "database/creds/pg-select-public" -}}
+            "db_connection": "host=postgres port=5432 user={{ .Data.username }} password={{ .Data.password }} dbname=wizard sslmode=disable"
+          {{- end }}
+          }
