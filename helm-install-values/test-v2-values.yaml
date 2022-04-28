@@ -1,0 +1,26 @@
+global:
+  openshift: true
+
+injector:
+  enabled: true
+  agentImage:
+    tag: "1.9.5"
+  namespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name : shahin-playground
+
+server:
+  dev:
+    enabled: false
+  ha:
+    enabled: true
+    replicas: 3
+    raft:
+      enabled: true
+  image:
+    tag: "1.9.5"
+  route:
+    enabled: true
+
+ui:
+  enabled: true

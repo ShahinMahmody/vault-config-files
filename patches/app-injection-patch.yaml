@@ -1,0 +1,14 @@
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: 'true'
+        vault.hashicorp.com/role: 'pg-selector'
+        vault.hashicorp.com/agent-inject-secret-db-creds: 'database/creds/pg-select-public'
+        vault.hashicorp.com/agent-inject-template-db-creds: |
+          {
+          {{ with secret "database/creds/pg-select-public" -}}
+            "db_connection": "host=postgresql port=5432 user={{ .Data.username }} password={{ .Data.password }} dbname=db sslmode=disable"
+          {{- end }}
+          }
+        vault.hashicorp.com/service: 'http://vault-v2.shahin-playground.svc:8200'
