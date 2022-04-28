@@ -1,6 +1,5 @@
 # vault-config-files
 
-----
 Contains config files for test installations of HashiCorp Vault on OpenShift.
 Below is a reference installation showing how to set up dynamic database credentials for an application accessing information from a Postgresql database.
 Credentials are supplied to the application's pod via an injected sidecar container.
@@ -12,7 +11,6 @@ It is intended as a reference for setup and operation, for more information on V
 
 ## Installing Vault
 
-----
 The recommended way of installing Vault on OpenShift is via Helm Chart.
 This reference was made using v0.19.0 of the `hashicorp/vault` chart using Helm v3.5.
 ```console
@@ -77,7 +75,6 @@ The last part of the configuration file enables the web UI, which is a helpful t
 Once the pods are running but not ready, basic Vault setup can continue.
 ## Initializing Vault
 
-----
 Vault starts off in an uninitialized, [sealed](https://www.vaultproject.io/docs/v1.9.x/concepts/seal) state.
 In order to progress, it first needs to be initialized on one of its pods.
 ```console
@@ -118,7 +115,6 @@ $ oc expose svc vault-v2-ui
 ```
 ## Enable Kubernetes Authentication
 
-----
 Next, [Kubernetes authentication](https://www.vaultproject.io/docs/v1.9.x/auth/kubernetes) needs to be enabled and configured so that other actors within the cluster can authenticate with Vault.
 It makes use of Service Account Tokens to allow access by specific service accounts to specific resources.
 Commands that interact with Vault's storage require logging in first.
@@ -181,7 +177,6 @@ Despite no explicit `renew_statements` being defined here Vault will update the 
 The lease's default time-to-live and maximum time-to-live are also defined here.
 ## Setup Service Account
 
-----
 The final step within Vault is to tie in a Service Account and give it the correct privileges to be able to access the generated secrets.
 Access privileges are handled in Vault via [policies](https://www.vaultproject.io/docs/v1.9.x/concepts/policies).
 ```console
@@ -214,7 +209,6 @@ $ oc create sa pg-selector --namespace shahin-playground
 ```
 ## Annotate the Application
 
-----
 The application is supplied here without annotations but with a patch to apply them later to see the Agent Injector in action.
 
 ```console
