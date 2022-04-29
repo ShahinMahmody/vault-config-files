@@ -62,7 +62,7 @@ Disabling [dev mode](https://www.vaultproject.io/docs/v1.9.x/concepts/dev-server
 This reference makes use of [high availability mode](https://www.vaultproject.io/docs/v1.9.x/concepts/ha) with a [raft algorithm backed](https://raft.github.io/) storage consensus model to show a robust deployment with three replicas.
 The container image is fixed to 1.9.5 in order to use the recommended way of dealing with issues concerning newer Kubernetes versions and ServiceAccount authentication with Vault (this is elaborated on further below in the document).
 `route` is minimally configured and serves no practical purpose in this example besides showing that a Route could be configured at this point.
-```
+```yaml
 ...
 ui:
   enabled: true
@@ -143,7 +143,7 @@ For the next step, a connection with a PostgreSQL database will be set up in ord
 $ vault secrets enable database
 ```
 Just as with authentication, the different ways of storing secrets, handled by [Secret Engines](https://www.vaultproject.io/docs/v1.9.x/secrets), need to be enabled first.
-In this case database credentials are required, thus the [database Secret Engine](https://www.vaultproject.io/docs/v1.9.x/secrets/databases) is used.
+In this case database credentials are required, thus the [Database Secret Engine](https://www.vaultproject.io/docs/v1.9.x/secrets/databases) is used.
 Once enabled, a config can be written at the path beginning with `database/config/`, just as with authentication.
 However, since more than one database connection may be managed through Vault at the same time the separate configurations get a differently named path.
 ```console
